@@ -1,0 +1,21 @@
+from random import randint
+
+answer = randint(1, 20)
+# print(answer) 테스트를 위한 코드
+chance = 4
+tries = 1
+
+while tries <= 4:
+    guess = int(input("기회가 %d번 남았습니다. 1-20 사이의 숫자를 맞춰보세요: " % (chance)))
+    if answer > guess:
+        print("Up")
+    elif answer < guess:
+        print("Down")
+    elif answer == guess:
+        print("축하합니다. %d번만에 숫자를 맞추셨습니다." % (tries))
+        break
+    chance -= 1
+    tries += 1
+
+if chance == 0:
+    print("아쉽습니다. 정답은 %d였습니다." % (answer))
