@@ -1,0 +1,9 @@
+# 문제의 조건 나열
+# 피타고라스의 정리르 만족하는 자연수 a, b, c에 대하여 a + b + c = 1000, a < b < c
+# a * b * c의 값은?
+
+for a in range(1, 333):
+    for b in range(1, 500):
+        c = 1000 - a - b
+        if a ** 2 + b ** 2 == c ** 2:
+            print("%d" % (a * b * c))
