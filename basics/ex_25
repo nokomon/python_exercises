@@ -1,0 +1,15 @@
+#vocabulary.txt 열기
+vocab_file = open('vocabulary.txt', 'r', encoding='utf-8')
+
+for line in vocab_file:
+    set = line.strip().split(": ")
+
+    #문제를 내고, 답 입력받기
+    answer = input("%s: " % (set[1]))
+    if answer == set[0]:
+        print("맞았습니다!\n")
+    else:
+        print("아쉽습니다. 정답은 %s입니다.\n" %(set[0]))
+
+#열었던 파일 닫기
+vocab_file.close()

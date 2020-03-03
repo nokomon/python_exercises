@@ -1,0 +1,92 @@
+from random import randint
+
+
+# 무작위로 정렬된 1 - 45 사이의 숫자 여섯개 뽑기
+def generate_numbers():
+    i = 0
+    generated_list = []
+
+    while i < 6:
+        number = randint(1, 45)
+        if number in generated_list:
+            number = randint(1, 45)
+        generated_list.append(number)
+        i = i + 1
+
+    return sorted(generated_list)
+
+# test
+print(generate_numbers())
+
+
+# 보너스까지 포함해 7개 숫자 뽑기
+# 정렬된 6개의 당첨 번호와 1개의 보너스 번호 리스트를 리턴
+# 예: [1, 7, 13, 23, 31, 41, 15]
+def draw_winning_numbers():
+    generated_list = generate_numbers()
+
+    while True:
+        bonus_number = randint(1, 45)
+        if bonus_number in generated_list:
+            bonus_number = randint(1, 45)
+        generated_list.append(bonus_number)
+        break
+
+    return generated_list
+
+# test
+print(draw_winning_numbers())
+
+# 두 리스트에서 중복되는 숫자가 몇개인지 구하기
+def count_matching_numbers(list1, list2):
+
+    i = 0
+    count = 0
+
+    while i < len(list1):
+        if list1[i] in list2:
+            count = count + 1
+        i = i + 1
+
+    return count
+
+# test
+print(count_matching_numbers([1,2,3,4,], [1,2,3,5,7,8,9]))
+
+# 로또 등수 확인하기
+def check(numbers, winning_numbers):
+
+    count = count_matching_numbers(numbers, winning_numbers[0:6])
+
+    if count == 6:
+        return 1100000000
+    elif count == 5 and winning_numbers[-1] in numbers:
+        return 500000000
+    elif count == 5:
+        return 1000000
+    elif count == 4:
+        return 50000
+    elif count == 3:
+        return 5000
+
+    # 당첨이 안됐다는걸 알기 위해 추가로 넣은 코드
+    else:
+        return "꽝입니다"
+
+# test
+print(check(generate_numbers(), draw_winning_numbers()))
+
+# 1등 test
+print(check([1,2,3,4,5,6], [1,2,3,4,5,6,7]))
+
+# 2등 test
+print(check([1,2,3,4,5,7], [1,2,3,4,5,6,7]))
+
+# 3등 test
+print(check([1, 2, 3, 4, 5, 8], [1, 2, 3, 4, 5, 9, 11]))
+
+# 4등 test
+print(check([1,2,3,4,5,6], [1,2,3,4,10,11,12,13]))
+
+# 5등 test
+print(check([1,2,3,4,5,6], [1,2,3,10,11,12,13,14]))

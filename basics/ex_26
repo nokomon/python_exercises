@@ -1,0 +1,36 @@
+# vocabulary.txt 열기
+vocab_file = open('vocabulary.txt', 'r', encoding='utf-8')
+
+eng_list = []
+kor_list = []
+
+# 영어, 한글 단어 각각 리스트로 만들기
+for line in vocab_file:
+    set = line.strip().split(": ")
+
+    eng_list = eng_list + list(set[:1])
+    kor_list = kor_list + list(set[1:])
+
+# randint는 파라미터로 정수만 받음
+# 그러므로, 파라미터를 정수인 변수로 두고 코딩하자
+
+while True:
+    from random import randint
+    quiz = randint(0, len(kor_list) -1)
+
+    answer = input("%s: " % (kor_list[quiz]))
+
+    while answer != "q":
+        if answer == eng_list[quiz]:
+            print("맞았습니다!\n")
+            break
+
+        else:
+            print("틀렸습니다. 정답은 %s입니다.\n" % (eng_list[quiz]))
+            break
+
+    if answer == "q":
+        break
+
+# 열린 파일 닫기
+vocab_file.close()

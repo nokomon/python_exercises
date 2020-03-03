@@ -1,0 +1,18 @@
+year = 1988
+money = 50000000
+EUNMA = 1100000000
+INTEREST = 0.12
+
+while year < 2016:
+    money = money * (1 + INTEREST)
+    year = year + 1
+    
+if money > EUNMA:
+    print("%d원 차이로 동일 아저씨의 말씀이 맞습니다." %(money - EUNMA))
+
+if money < EUNMA:
+    print("%d원 차이로 미란 아주머니의 말씀이 맞습니다." %(EUNMA - money))
+    
+if money == EUNMA:
+    print("값이 같습니다.")
+        

@@ -1,0 +1,13 @@
+in_file = open('data/chicken.txt', 'r', encoding='utf-8')
+
+sum = 0
+
+for line in in_file:
+    sales = line.split("일: ")
+    sum = sum + int(sales[1])
+
+print(sum / int(sales[0]))
+
+# 파일 닫기
+
+in_file.close()

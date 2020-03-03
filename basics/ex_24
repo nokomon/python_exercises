@@ -1,0 +1,14 @@
+vocab_file = open('vocabulary.txt', 'w', encoding='utf-8')
+
+while True:
+    eng = input("영어 단어를 입력하세요: ")
+    if eng == "q":
+        break
+    kor = input("한국어 뜻을 입력하세요: ")
+    if kor == "q":
+        break
+    #eng, kor를 vocabulary.txt에 저장하기
+    vocab_file.write("%s: %s\n" % (eng, kor))
+
+#열린 파일 닫기
+vocab_file.close()
