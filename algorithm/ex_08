@@ -1,0 +1,22 @@
+# 처음, 마지막 인덱스는 계산하지 않는다
+# 탐색 인덱스 기준으로 양 옆의 값이 더 크면 물이 고임
+
+
+def trapping_rain(buildings):
+    count_rain = 0
+
+    for i in range(1, len(buildings) - 1):
+        left_highest = max(buildings[:i])
+        right_highest = max(buildings[i:])
+
+        allowed_rain = min(left_highest, right_highest)
+        count_rain += max(0, allowed_rain - buildings[i])
+
+    return count_rain
+
+
+
+
+# 테스트
+print(trapping_rain([3, 0, 0, 2, 0, 4]))
+print(trapping_rain([0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1]))
